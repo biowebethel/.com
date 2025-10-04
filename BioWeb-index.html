@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BioWeb - Colegio Bethel</title>
+  <style>
+    :root{
+      --green-dark:#0f5b17;
+      --green-medium:#176f23;
+      --green-light:#2f9a2f;
+      --accent:#6bbf4b;
+      --max-width:1000px;
+      --radius:10px;
+      font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    }
+    body{margin:0; background:#f2f7f2; color:#0b2c11;}
+    header{
+      background: linear-gradient(180deg,var(--green-dark), #0e5b12 60%);
+      color:#fff;
+      padding:28px 16px 10px 16px;
+      text-align:center;
+      box-shadow:0 6px 0 rgba(0,0,0,0.06) inset;
+    }
+    .brand{
+      display:flex;align-items:center;gap:14px;justify-content:center;
+    }
+    .brand img{width:52px;height:52px;border-radius:8px;object-fit:cover;box-shadow:0 2px 6px rgba(0,0,0,0.2)}
+    .brand h1{font-size:28px;line-height:1;margin:0;font-weight:700}
+    .slogan{margin-top:6px;font-size:14px;opacity:0.95}
+
+    nav{background:linear-gradient(180deg,var(--green-medium), #1f7a22);}
+    .nav-inner{max-width:var(--max-width);margin:0 auto;display:flex;gap:22px;align-items:center;justify-content:center;padding:12px 8px;color:#fff}
+    .nav-inner a{color:rgba(255,255,255,0.95);text-decoration:none;padding:8px 14px;border-radius:6px;font-weight:600;cursor:pointer}
+    .nav-inner a:hover{background:rgba(255,255,255,0.06)}
+
+    main{max-width:var(--max-width);margin:28px auto;padding:22px;background:#fff;border-radius:var(--radius);box-shadow:0 6px 18px rgba(16,66,18,0.06)}
+    h2{color:var(--green-dark);margin-top:0;text-align:center}
+    p.lead{line-height:1.6;text-align:justify}
+    ul.check{list-style:none;padding-left:0;margin:18px 0}
+    ul.check li{padding:8px 0;display:flex;gap:10px;align-items:flex-start}
+    ul.check li::before{content:"✅";font-size:18px;line-height:1.2}
+
+    .callout{background:linear-gradient(90deg,#eefbe7,#f7fff8);border-left:4px solid var(--accent);padding:12px 14px;border-radius:8px;margin-top:16px}
+
+    footer{max-width:var(--max-width);margin:18px auto;padding:18px;text-align:center;color:#164a1f}
+    .suggestions{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start}
+    form{background:#fff;padding:14px;border-radius:8px;box-shadow:0 6px 10px rgba(16,66,18,0.04)}
+    label{display:block;font-weight:600;margin-top:8px}
+    input[type=text],input[type=email],textarea{width:100%;padding:8px;border:1px solid #d6e9d6;border-radius:6px;margin-top:6px;font-size:14px}
+    button{margin-top:10px;background:var(--green-dark);color:#fff;border:0;padding:10px 14px;border-radius:8px;font-weight:700;cursor:pointer}
+    button:hover{opacity:0.95}
+
+    /* Galería */
+    .cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:20px}
+    .card{background:#fff;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,0.08);overflow:hidden;cursor:pointer;text-align:center;transition:transform 0.2s}
+    .card:hover{transform:scale(1.05)}
+    .card img{width:100%;height:300px;object-fit:cover}
+    .card h3{margin:10px;font-size:16px;color:var(--green-dark)}
+
+    /* Modal estilo */
+    .modal {
+      display: none; 
+      position: fixed; 
+      z-index: 1000; 
+      left: 0;
+      top: 0;
+      width: 100%; 
+      height: 100%;
+      background: rgba(0,0,0,0.6); 
+    }
+    .modal-content {
+      background: #fff;
+      margin: 10% auto;
+      padding: 20px;
+      border-radius: 12px;
+      max-width: 500px;
+      text-align: center;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+    }
+    .close {
+      color: #333;
+      float: right;
+      font-size: 24px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    @media (max-width:820px){
+      .suggestions{grid-template-columns:1fr}
+      .brand h1{font-size:22px}
+      .brand img{width:46px;height:46px}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <img src="logo.jpg" alt="Logo BioWeb" onerror="this.style.display='none'">
+      <div>
+        <h1>🌱 BioWeb - Colegio Bethel</h1>
+        <div class="slogan">Conociendo y cuidando nuestras especies vegetales</div>
+      </div>
+    </div>
+  </header>
+
+  <nav aria-label="Navegación principal">
+    <div class="nav-inner">
+      <a onclick="showSection('inicio')">Inicio</a>
+      <a onclick="showSection('frutales')">Frutales</a>
+      <a onclick="showSection('ornamentales')">Ornamentales</a>
+    </div>
+  </nav>
+
+  <main id="inicio">
+    <h2>Bienvenidos a BioWeb</h2>
+    <img src="bienvenida.jpeg" alt="Bienvenida" style="display:block;margin:0 auto;max-width:300px;border-radius:12px;">
+    <p class="lead">En nuestra institución educativa, la naturaleza no es solo un entorno, sino también un aula viva donde aprendemos, investigamos y nos conectamos con el valor de cada especie vegetal. <strong>BioWeb</strong> es un proyecto creado por estudiantes de grado 11 con el propósito de documentar, organizar y dar a conocer las plantas que crecen dentro de nuestro colegio, resaltando su importancia ecológica, cultural, medicinal y educativa.</p>
+
+    <p>Aquí encontrarás información detallada sobre cada especie:</p>
+    <ul class="check">
+      <li>Sus características esenciales.</li>
+      <li>Datos curiosos que quizás no conocías.</li>
+      <li>Usos medicinales, alimenticios e industriales.</li>
+      <li>Recomendaciones de mantenimiento y cuidado.</li>
+    </ul>
+
+    <div class="callout">
+      <p>Este espacio digital busca convertirse en una herramienta pedagógica para estudiantes y docentes, fomentando el aprendizaje interactivo y el respeto por la biodiversidad. A través de esta plataforma, no solo compartimos conocimientos, sino que también invitamos a reflexionar sobre la importancia de conservar y valorar nuestro entorno natural.</p>
+      <p><em>Porque conocer nuestras plantas es también cuidar nuestra identidad y nuestro futuro.</em></p>
+    </div>
+  </main>
+
+  <!-- Frutales -->
+  <main id="frutales" style="display:none">
+    <h2>Frutales</h2>
+    <div class="cards">
+      <div class="card" onclick="showInfo('Mangifera Indica (Mango)','Características esenciales: Árbol frutal de gran tamaño, puede alcanzar hasta 30 metros de altura. Sus hojas son perennes, verdes y alargadas. Produce frutos carnosos, dulces y ricos en vitaminas A y C.    Dato curioso: El mango es considerado “el rey de las frutas” en muchos países asiáticos. Usos: Alimenticio: la fruta se consume fresca, en jugos, mermeladas y postres. Medicinal: sus hojas se usan en infusiones para controlar la diabetes y mejorar la digestión. Madera: empleada en carpintería ligera. Mantenimiento: Requiere podas periódicas para controlar el tamaño y estimular la producción de frutos. Riego moderado, evitando el exceso de agua. Control fitosanitario contra plagas como la mosca de la fruta.')">
+        <img src="frutales/MangiferaIndica.jpg" alt="Mangifera Indica (Mango)"><h3>Mangifera Indica (Mango)</h3>
+      </div>
+      <div class="card" onclick="showInfo('Cocos Nucifera (Palma Cocotera)','Características esenciales: Palma de tronco esbelto, que puede medir entre 10 y 20 metros. Posee hojas pinnadas muy largas, de hasta 5 metros. Produce cocos, un fruto con agua y pulpa comestible.  Dato curioso: El coco es conocido como “el árbol de la vida” porque todas sus partes tienen un uso práctico. Usos: Alimenticio: agua de coco, pulpa y aceite.  Medicinal: el agua de coco ayuda a la hidratación y aporta minerales.  Industrial: su cáscara y fibra se usan para artesanías y cuerdas. Mantenimiento: Necesita suelos arenosos y buen drenaje.  Riego moderado en climas secos. Se recomienda retirar hojas secas y frutos dañados para mantener la palma sana.')">
+        <img src="frutales/Palma Cocotera.jpg" alt="Cocos Nucifera (Palma Cocotera)"><h3>Cocos Nucifera (Palma Cocotera)</h3>
+      </div>
+      <div class="card" onclick="showInfo('Manihot esculenta (Yuca o Mandioca)','Características esenciales: Arbusto de hasta 3 metros de altura. Sus raíces tuberosas son ricas en almidón. Posee hojas palmeadas y verdes brillantes. Dato curioso: La yuca es uno de los principales alimentos básicos en África y América Latina. Usos: Alimenticio: sus raíces se consumen cocidas, fritas o en harinas. Medicinal: en pequeñas dosis, ayuda a aliviar fiebre y diarreas (pero mal preparada puede ser tóxica). Industrial: se usa para fabricar almidón y biocombustibles. Mantenimiento: Requiere suelos bien drenados y exposición al sol. No necesita mucho riego, es resistente a la sequía. Se debe desyerbar alrededor de la planta para un buen desarrollo.')">
+        <img src="frutales/Manihot esculenta.jpg" alt="Manihot esculenta (Yuca o Mandioca)"><h3>Manihot esculenta (Yuca o Mandioca)</h3>
+      </div>
+      <div class="card" onclick="showInfo('Syzygium jambos (Pomarroso)','Características esenciales: Árbol de entre 10 y 15 metros de altura. Hojas verdes brillantes y flores blancas muy aromáticas. Fruto comestible con aroma similar a la rosa. Dato curioso: El fruto del pomarroso tiene un sabor peculiar y un aroma tan intenso que se le conoce como “manzana rosa”. Usos: Alimenticio: los frutos se comen frescos o en mermeladas. Medicinal: ayuda a aliviar problemas digestivos y respiratorios. Ornamental: es muy usado en parques por su sombra y flores llamativas.  Mantenimiento: Requiere riego frecuente en épocas secas. Podas ligeras para darle forma y aireación. Control de plagas como pulgones o escamas.')">
+        <img src="frutales/Syzygium Jambos.jpg" alt="Syzygium jambos (Pomarroso)"><h3>Syzygium jambos (Pomarroso)</h3>
+      </div>
+      <div class="card" onclick="showInfo('Psidium guajava (Guayabo)','Características esenciales:  Árbol pequeño de 3 a 10 metros de altura. Hojas opuestas, simples y aromáticas. Frutos redondos o alargados, con pulpa dulce y muchas semillas. Dato curioso: La guayaba contiene más vitamina C que una naranja. Usos: Alimenticio: fruta fresca, jugos, bocadillos y jaleas. Medicinal: hojas en infusión para tratar diarreas, heridas y problemas bucales. Ecológico: atrae aves y polinizadores. Mantenimiento: Requiere podas de limpieza para eliminar ramas secas. Riego moderado, evitando encharcamientos.Control de plagas como gusanos y moscas de la fruta.')">
+        <img src="frutales/Psidium Guajava.jpg" alt="Psidium guajava (Guayabo)"><h3>Psidium guajava (Guayabo)</h3>
+      </div>
+    </div>
+  </main>
+
+  <!-- Ornamentales -->
+  <main id="ornamentales" style="display:none">
+    <h2>Ornamentales</h2>
+    <div class="cards">
+      <div class="card" onclick="showInfo('Ficus benjamina (Ficus o Laurel de la India)','Características esenciales:  Árbol ornamental perenne, puede alcanzar entre 15 y 30 metros en condiciones naturales, aunque en maceta se mantiene mucho más pequeño. Sus hojas son pequeñas, brillantes y de forma ovalada, aportando un aspecto elegante y fresco. Muy adaptable: crece tanto en interiores como en exteriores, tolerando diferentes condiciones climáticas. Dato curioso: En algunos países asiáticos, el ficus es considerado un árbol sagrado que simboliza la unión entre el cielo y la tierra. Usos: 🌱 Ornamental: muy usado en interiores, parques y jardines por su follaje siempre verde. 🌬️ Purificador: ayuda a limpiar el aire interior, absorbiendo contaminantes como el formaldehído. 🌳 Paisajismo: se emplea en podas artísticas (bonsái o topiaria). Mantenimiento: Requiere riego moderado, evitando el encharcamiento. Necesita buena iluminación, pero no sol directo fuerte en interiores. Podas periódicas para controlar el tamaño y estimular el crecimiento.')"><img src="ornamentales/Ficus Benjamina.jpg"><h3>Ficus benjamina (Ficus o Laurel de la India)</h3></div>
+      <div class="card" onclick="showInfo('Bambú de la suerte (Dracaena sanderiana)','Características esenciales: Planta herbácea de tallos verdes, similar al bambú, aunque no es un bambú verdadero. Se cultiva frecuentemente en agua o en tierra, en interiores. Muy resistente y de lento crecimiento. Dato curioso: Se considera una planta que atrae la buena suerte, prosperidad y energía positiva según el Feng Shui. Usos: 🌱 Ornamental: muy popular en oficinas y hogares. 🎋 Decorativo: suele colocarse en arreglos artísticos y minimalistas. 🌍 Cultural: símbolo de buena fortuna en Asia. Mantenimiento: Cambiar el agua cada 7 a 10 días si está en recipiente acuático. Evitar luz solar directa, prefiere luz indirecta brillante. Se recomienda fertilización ligera en época de crecimiento.')"><img src="ornamentales/Bambú de la Suerte.jpg"><h3>Bambú de la suerte (Dracaena sanderiana)</h3></div>
+      <div class="card" onclick="showInfo('Phytolacca americana (Hierba carmín o fitolaca)','Características esenciales: Planta herbácea perenne que puede alcanzar hasta 3 metros de altura.  Posee tallos gruesos y rojos, con hojas grandes y racimos de bayas negras brillantes.  Muy resistente, crece de forma silvestre en muchas regiones.  Dato curioso: Sus bayas fueron usadas antiguamente como tintes naturales para textiles y alimentos, aunque son tóxicas. Usos:  🎨 Colorante: se empleaba para dar color a vinos y dulces. 🌱 Ornamental: se cultiva por su atractivo follaje y racimos coloridos. ⚠️ Importante: todas sus partes son venenosas si se consumen en exceso. Mantenimiento: Requiere suelos fértiles y bien drenados. Se adapta al sol directo o media sombra. Controlar su crecimiento, ya que puede volverse invasora.')"><img src="ornamentales/PHYTOLACCA AMERICANA O HIERBA CARMÍN.jpg"><h3>Phytolacca americana (Hierba carmín o fitolaca)</h3></div>
+      <div class="card" onclick="showInfo('Rosa del desierto (Adenium obesum)','Características esenciales:  Arbusto suculento con un tallo engrosado que almacena agua. Produce flores llamativas en tonos rosados, rojos y blancos. Puede alcanzar hasta 3 metros de altura en exteriores, pero en maceta es más pequeña. Dato curioso: Su tallo engrosado en forma de botella es muy apreciado en colecciones de plantas exóticas. Usos: 🌸 Ornamental: muy usada en jardines y como planta de colección. 🎍 Bonsái: se cultiva en miniatura por su aspecto escultórico. ⚠️ Atención: su savia es tóxica, utilizada tradicionalmente como veneno de flechas. Mantenimiento: Necesita suelos arenosos y muy buen drenaje. Requiere riego escaso, tolera sequía. Sol directo para estimular la floración.')"><img src="ornamentales/ROSA DEL DESIERTO.jpg"><h3>Rosa del desierto (Adenium obesum)</h3></div>
+      <div class="card" onclick="showInfo('Celosía argentea (Cresta de gallo)','Características esenciales: Planta anual de tallos verdes y hojas ovaladas.  Sus flores tienen formas únicas que recuerdan a una cresta de gallo. Florece en tonos intensos como rojo, naranja, amarillo y púrpura. Dato curioso: Sus flores mantienen el color incluso después de secarse, por lo que se usan en arreglos secos. Usos: 🌺 Ornamental: aporta colorido a jardines y macetas. 🍵 Medicinal: en Asia sus semillas se usan en la medicina tradicional. 🎨 Artesanal: flores secas como decoración. Mantenimiento: Prefiere climas cálidos y exposición solar plena. Riego moderado y constante. Podas ligeras para estimular más flores.')"><img src="ornamentales/CRESTA DE GALLO O CELOSÍA ARGENTENA.jpg"><h3>Celosía argentea (Cresta de gallo)</h3></div>
+      <div class="card" onclick="showInfo('Cupressus sp. (Ciprés)','Características esenciales: Árbol de hoja perenne, con forma cónica y crecimiento vertical. Sus hojas son escamosas y de color verde oscuro. Puede alcanzar entre 20 y 40 metros de altura. Dato curioso: Los cipreses suelen plantarse en cementerios, ya que simbolizan eternidad y paz. Usos: 🌳 Ornamental: en avenidas, parques y como cortavientos. 🌱 Medicinal: aceites esenciales con propiedades expectorantes. Madera: usada en carpintería y construcción ligera. Mantenimiento: Necesita podas ligeras para mantener su forma. Requiere sol directo y suelos profundos. Riego moderado, evitando excesiva humedad.')"><img src="ornamentales/CUPRESSUS.jpg"><h3>Cupressus sp. (Ciprés)</h3></div>
+      <div class="card" onclick="showInfo('Ixora coccinea (Ixora o ponciana)','Características esenciales: Arbusto perenne de 1 a 3 metros de altura. Produce inflorescencias densas con flores pequeñas y rojas, naranjas o amarillas. Muy valorada en jardinería tropical. Dato curioso: Es conocida como “la llama de la selva” por el color intenso de sus flores. Usos: 🌸 Ornamental: muy común en jardines tropicales. 🌿 Medicinal: en infusión, se usa para tratar diarreas y fiebre. 🦋 Ecológico: atrae mariposas y polinizadores. Mantenimiento: Requiere exposición a pleno sol. Riego frecuente en climas cálidos. Poda regular para mantener la forma compacta.')"><img src="ornamentales/IXORA COCINERA.jpg"><h3>Ixora coccinea (Ixora o ponciana)</h3></div>
+      <div class="card" onclick="showInfo('Aloe arborescens (Áloe candelabro)','Características esenciales: Planta suculenta de porte arbustivo, puede alcanzar hasta 3 metros de altura. Sus hojas son carnosas, verdes azuladas, con bordes dentados. Produce flores rojas o anaranjadas en racimos largos y llamativos. Dato curioso: Es una de las especies de aloe más utilizadas en medicina natural, después del Aloe vera. Usos: 🌿 Medicinal: gel para cicatrización, quemaduras, problemas digestivos y refuerzo inmunológico. 🌸 Ornamental: muy usada en jardines xerófitos (de bajo riego). 🐝 Ecológico: sus flores atraen colibríes y abejas. Mantenimiento: Requiere exposición solar directa. Riego escaso, solo cuando el sustrato esté seco. Evitar suelos arcillosos o con encharcamiento.')"><img src="ornamentales/ALOE ARBORESCENS.jpg"><h3>Aloe arborescens (Áloe candelabro)</h3></div>
+      <div class="card" onclick="showInfo('Euphorbia milii (Corona de Cristo)','Características esenciales:  Arbusto suculento, con tallos espinosos y hojas ovaladas. Produce flores pequeñas, rodeadas de brácteas rojas, rosadas, blancas o amarillas. Puede crecer entre 1 y 1,5 metros.  Dato curioso: En la tradición cristiana, se dice que esta planta formó parte de la corona de espinas de Jesús, de allí su nombre. Usos: 🌺 Ornamental: muy popular por su floración casi todo el año.  En macetas y jardines secos, se emplea como planta decorativa resistente. ⚠️ Advertencia: su savia lechosa es tóxica y puede irritar la piel.  Mantenimiento:  Necesita sol directo para florecer. Riego moderado, dejando secar el sustrato. Poda ligera para controlar su forma.')"><img src="ornamentales/EUPHORBIA MILII.jpg"><h3>Euphorbia milii (Corona de Cristo)</h3></div>
+      <div class="card" onclick="showInfo('Sansevieria zeylanica (Lengua de suegra)','Características esenciales:  Planta perenne de hojas largas, lanceoladas y erectas. Muy resistente a la sequía y a bajas condiciones de luz. Puede crecer hasta 1 metro de altura. Dato curioso: Según estudios de la NASA, es una de las mejores plantas para purificar el aire en interiores. Usos:  🌬️ Purificadora: elimina toxinas como formaldehído y benceno. 🌱 Ornamental: ideal para interiores modernos. 🌿 Medicinal: en usos tradicionales, el jugo de sus hojas se usa para aliviar inflamaciones. Mantenimiento: Requiere poca agua, riego cada 2-3 semanas. Tolera poca luz, aunque prefiere luz indirecta brillante. No necesita podas frecuentes.')"><img src="ornamentales/SANSEVIERIA ZEYLANICA.jpg"><h3>Sansevieria zeylanica (Lengua de suegra)</h3></div>
+      <div class="card" onclick="showInfo('Sansevieria zeylanica (Lengua de suegra)','Características esenciales:  Planta herbácea tropical, de hojas grandes y verdes, similares a las del plátano. Produce flores rojas, amarillas o naranjas muy vistosas.  Puede alcanzar hasta 2 metros de altura. Dato curioso: Sus rizomas son comestibles y se usan en la gastronomía andina. Usos: 🌸 Ornamental: decora estanques, jardines húmedos y bordes de agua. 🍴 Alimenticio: rizomas ricos en almidón, usados en harina de achira. 🐦 Ecológico: atrae aves y mariposas. Mantenimiento: Requiere riego frecuente y suelos húmedos. Prefiere pleno sol. Podas para retirar hojas marchitas y estimular floración.')"><img src="ornamentales/CANNA INDICA O ACHIRA.jpg"><h3>Sansevieria zeylanica (Lengua de suegra)</h3></div>
+      <div class="card" onclick="showInfo('Portulaca oleracea (Portulaca, flor de seda)','Características esenciales: Planta rastrera y suculenta de rápido crecimiento.  Sus flores se abren con el sol y se cierran al anochecer. Muy resistente a la sequía. Dato curioso: Es comestible, considerada un “superalimento” por su alto contenido de omega-3. Usos: 🌸 Ornamental: cubresuelos en jardines secos. 🍴 Alimenticio: hojas y tallos consumidos en ensaladas o sopas. 🌿 Medicinal: se usa como antiinflamatorio y diurético. Mantenimiento: Requiere sol directo. Poco riego, muy tolerante a la sequía. Se expande fácilmente, conviene controlarla.')"><img src="ornamentales/PORTULACA.jpg"><h3>Portulaca oleracea (Portulaca, flor de seda)</h3></div>
+      <div class="card" onclick="showInfo('Cycas revoluta (Cica o palma de sagú)','Características esenciales:  Planta perenne de aspecto similar a una palma, pero es una gimnosperma. Crece lentamente, con un tronco corto y hojas pinnadas. Puede vivir más de 100 años. Dato curioso: Es considerada un fósil viviente, ya que existe desde la era de los dinosaurios. Usos: 🌴 Ornamental: muy valorada en jardinería exótica. 🏡 Decoración: en macetas grandes como planta de interior. ⚠️ Importante: todas sus partes son tóxicas si se ingieren. Mantenimiento: Necesita pleno sol o semisombra. Riego moderado, evitando el exceso de humedad. Retirar hojas viejas para mantener su estética.')"><img src="ornamentales/CYCAS REVOLUTA.jpg"><h3>Cycas revoluta (Cica o palma de sagú)</h3></div>
+      <div class="card" onclick="showInfo('Cordyline fruticosa (Cordiline, planta de la buena suerte)','Características esenciales:  Arbusto tropical con hojas alargadas y de colores que van del verde al púrpura y rojo. Puede alcanzar entre 1,5 y 4 metros. Muy decorativa en jardines tropicales. Dato curioso: En Polinesia, sus hojas eran usadas en rituales sagrados y como envoltorios de alimentos. Usos: 🌺 Ornamental: aporta color intenso a jardines y patios. 🌱 Ritual: en varias culturas, considerada planta de protección. 🏡 Interior y exterior: adaptable a macetas o al suelo. Mantenimiento: Prefiere suelos fértiles y húmedos. Riego frecuente sin encharcar. Poda de hojas secas para mantener su vistosidad.')"><img src="ornamentales/CORDYLINE FRUTICOSA.jpg"><h3>Cordyline fruticosa (Cordiline, planta de la buena suerte)</h3></div>
+      <div class="card" onclick="showInfo('Cymbopogon citratus (Hierba limón o citronela)','Características esenciales: Planta herbácea perenne de hojas largas y aromáticas. Puede alcanzar hasta 1,5 metros de altura. Aroma cítrico intenso gracias a su aceite esencial. Dato curioso: Es ampliamente usada como repelente natural de mosquitos. Usos: 🍵 Medicinal: en infusiones, útil contra la fiebre, la ansiedad y la mala digestión. 🍴 Alimenticio: condimento en la cocina asiática. 🌿 Industrial: aceite esencial para cosméticos y jabones. Mantenimiento: Requiere pleno sol. Riego regular, manteniendo el suelo húmedo. Podar hojas secas para estimular nuevo crecimiento.')"><img src="ornamentales/CYMBOPOGON CITRATUS.jpg"><h3>Cymbopogon citratus (Hierba limón o citronela)</h3></div>
+      <div class="card" onclick="showInfo('Sansevieria trifasciata (Lengua de tigre)','Características esenciales: Planta suculenta con hojas duras y verticales, de color verde con vetas amarillas.  Muy resistente a condiciones adversas.  Ideal para principiantes en jardinería. Dato curioso: En Brasil se le conoce como “espada de San Jorge” y se le atribuyen propiedades protectoras. Usos: 🌬️ Purificadora: excelente para interiores. 🌱 Ornamental: en macetas pequeñas o como bordura. 🌿 Medicinal: en medicina popular se usa su jugo para problemas cutáneos. Mantenimiento: Muy poco riego, tolera abandono. Crece con poca luz. No requiere podas.')"><img src="ornamentales/SANSEVIERIA TRIFASCIATA.jpg"><h3>Sansevieria trifasciata (Lengua de tigre)</h3></div>
+      <div class="card" onclick="showInfo('Euphorbia milii (Corona de Cristo)','Características esenciales:  Arbusto suculento, con tallos espinosos y hojas ovaladas. Produce flores pequeñas, rodeadas de brácteas rojas, rosadas, blancas o amarillas. Puede crecer entre 1 y 1,5 metros. Dato curioso: En la tradición cristiana, se dice que esta planta formó parte de la corona de espinas de Jesús, de allí su nombre. Usos: 🌺 Ornamental: muy popular por su floración casi todo el año.  En macetas y jardines secos, se emplea como planta decorativa resistente. ⚠️ Advertencia: su savia lechosa es tóxica y puede irritar la piel. Mantenimiento: Necesita sol directo para florecer. Riego moderado, dejando secar el sustrato. Poda ligera para controlar su forma.')"><img src="ornamentales/EUPHORBIA MILII.jpg"><h3>Euphorbia milii (Corona de Cristo)</h3></div>
+      <div class="card" onclick="showInfo('Hydrangea macrophylla (Hortensia)','Características esenciales: Arbusto caducifolio ornamental que puede alcanzar entre 1 y 2 metros de altura. Sus flores se agrupan en inflorescencias esféricas grandes (racimos o “pompones”). El color de las flores varía según el pH del suelo: azul en suelos ácidos, rosa en suelos alcalinos y blanco en suelos neutros. Sus hojas son grandes, verdes intensas y brillantes, de bordes serrados. Dato curioso: En Japón, la hortensia es símbolo de gratitud y disculpa, y se suele regalar como muestra de arrepentimiento o agradecimiento.  Además, en la variedad “Magical”, las flores cambian de color conforme avanzan las estaciones, mostrando diferentes tonalidades a lo largo del año.  Usos: 🌺 Ornamental: muy apreciada en jardines, macetas grandes y como seto decorativo. 🌸 Decoración floral: sus flores son muy utilizadas en ramos y arreglos para bodas, aniversarios y eventos.🏡 Paisajismo: aporta volumen y colorido a zonas sombreadas del jardín.🎨 Secado de flores: sus inflorescencias secas mantienen parte de su color y se usan en arreglos decorativos. Mantenimiento y cuidados: ☀️ Luz: prefiere semisombra o sombra parcial, evitando el sol directo fuerte que puede quemar sus hojas. 💧 Riego: necesita riego constante, especialmente en época de calor, manteniendo el sustrato húmedo pero sin encharcar. 🌱 Suelo: fértil, rico en materia orgánica y con buena capacidad de retención de agua. ✂️ Poda: debe realizarse una vez al año, después de la floración, eliminando las flores marchitas y ramas viejas para favorecer nuevos brotes. 🌸 Fertilización: aplicar abonos ricos en potasio y fósforo durante la primavera y verano para estimular la floración.')"><img src="ornamentales/HORTENSIA MAGICAL.jpg"><h3>Hydrangea macrophylla (Hortensia)</h3></div>
+      <div class="card" onclick="showInfo('Curcuma longa (Cúrcuma)','Características esenciales:  Planta herbácea tropical con rizomas anaranjados. Sus hojas son grandes, similares al plátano. Produce flores ornamentales rosadas o blancas. Dato curioso: Es la base del curry y tiene propiedades medicinales reconocidas mundialmente. Usos: 🍴 Alimenticio: especia en la cocina asiática. 🌿 Medicinal: antiinflamatoria, antioxidante y digestiva. 🌸 Ornamental: flores muy apreciadas en decoración. Mantenimiento: Prefiere climas cálidos y húmedos. Requiere riego constante. Suelo rico en nutrientes.')"><img src="ornamentales/CURCUMA LONGA.jpg"><h3>Curcuma longa (Cúrcuma)</h3></div>
+      <div class="card" onclick="showInfo('Coleus scutellarioides (Coleo o cóleo)','Características esenciales:  Planta herbácea de hojas coloridas en tonos verdes, rojos, púrpuras y amarillos. Muy popular en jardinería por la variedad de colores en su follaje. De rápido crecimiento, puede alcanzar 1 metro. Dato curioso: Se le considera una “planta camaleón” por la gran diversidad de colores que puede mostrar. Usos: 🌱 Ornamental: aporta colorido a macetas y jardines. 🌿 Medicinal: en medicina popular se usa como digestivo. 🎨 Decorativa: muy usada en diseños de jardinería. Mantenimiento: Prefiere semisombra. Riego frecuente. Podar puntas para estimular ramificación.')"><img src="ornamentales/COLEUS SCUTELLARIOIDES.jpg"><h3>Coleus scutellarioides (Coleo o cóleo)</h3></div>
+      <div class="card" onclick="showInfo('Palo cruz (Planta medicinal y ornamental)','Características esenciales: Arbusto perenne de hojas verdes brillantes. Produce flores pequeñas, generalmente blancas. Muy usado en medicina tradicional. Dato curioso: En la medicina popular se le atribuyen propiedades espirituales de protección. Usos: 🌿 Medicinal: infusiones para tratar resfriados, dolores musculares y problemas digestivos. 🌸 Ornamental: cultivada en patios y jardines rurales. 🕊️ Espiritual: considerada planta protectora en varias culturas. Mantenimiento: Requiere semisombra. Riego frecuente, sin encharcar. Podas ligeras para mantener el arbusto compacto.')"><img src="ornamentales/PALO CRUZ.jpg"><h3>Palo cruz (Planta medicinal y ornamental)</h3></div>
+    </div>
+  </main>
+
+  <footer>
+    <h3 id="contacto">Enviar sugerencias</h3>
+    <div class="suggestions">
+      <div>
+        <p>Si tienes ideas, correcciones o quieres agregar información sobre alguna especie del colegio, envíanos tus sugerencias usando este formulario. ¡Apreciamos tu colaboración!</p>
+        <form id="suggestionForm" onsubmit="return handleSubmit(event)">
+          <label for="name">Nombre</label>
+          <input id="name" name="name" type="text" placeholder="Tu nombre" required>
+          <label for="email">Correo electrónico</label>
+          <input id="email" name="email" type="email" placeholder="tu@correo.com" required>
+          <label for="message">Sugerencia</label>
+          <textarea id="message" name="message" rows="6" placeholder="Escribe aquí tu sugerencia" required></textarea>
+          <button type="submit">Enviar sugerencia</button>
+        </form>
+      </div>
+      <div>
+        <div style="background:#fff;padding:16px;border-radius:8px;box-shadow:0 6px 10px rgba(16,66,18,0.04);">
+          <h4>Protección de Datos Personales</h4>
+          <p>Ley de Protección de Datos Personales o Ley 1581 de 2012
+Reconoce y protege el derecho que tienen todas las personas a conocer, actualizar y rectificar las informaciones que se hayan recogido sobre ellas en bases de datos o archivos que sean susceptibles de tratamiento por entidades de naturaleza pública o privada.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal -->
+  <div id="infoModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h3 id="modalTitle"></h3>
+      <p id="modalText"></p>
+    </div>
+  </div>
+
+  <script>
+    function handleSubmit(e){
+      e.preventDefault();
+      const name = encodeURIComponent(document.getElementById('name').value.trim());
+      const email = encodeURIComponent(document.getElementById('email').value.trim());
+      const message = encodeURIComponent(document.getElementById('message').value.trim());
+      const subject = encodeURIComponent('Sugerencia - BioWeb');
+      const body = encodeURIComponent('Nombre: ') + name + '%0D%0A' + encodeURIComponent('Correo: ') + email + '%0D%0A%0D%0A' + message;
+      const to = 'bioweb@colegiobethel.edu';
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+      return false;
+    }
+
+    function showSection(id){
+      document.querySelectorAll("main").forEach(m=>m.style.display="none");
+      document.getElementById(id).style.display="block";
+    }
+
+    // Mostrar solo texto y nombre en el modal (sin imagen)
+    function showInfo(name, text){
+      document.getElementById("modalTitle").innerText = name;
+      document.getElementById("modalText").innerText = text;
+      document.getElementById("infoModal").style.display = "block";
+    }
+    function closeModal(){
+      document.getElementById("infoModal").style.display = "none";
+    }
+    window.onclick = function(event) {
+      let modal = document.getElementById("infoModal");
+      if (event.target == modal) modal.style.display = "none";
+    }
+  </script>
+</body>
+</html>
+
+
+
+
